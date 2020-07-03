@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+      .container :only-child{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+
+      </div>
+    </div>
+  </body>
+</html>
