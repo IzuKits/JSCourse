@@ -1,0 +1,422 @@
+.canvas {
+    position: relative;
+    
+    width: 500px;
+    height: 380px;
+    margin: 80px 0 0 0;
+    
+    transition: .3s ease;
+    
+    perspective: 800px;
+}
+
+.box_front {
+    position: relative;
+    
+    overflow: hidden;
+    
+    width: 500px;
+    height: 380px;
+    
+    background: skyblue;
+    box-shadow: 0 -400px 300px -300px steelblue inset;
+
+    animation: sky 90s linear infinite;
+}
+
+@keyframes sky{
+    0%, 100%{
+        background: skyblue;
+        box-shadow: 0 -400px 300px -300px steelblue inset; 
+    }
+    30%{
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px orangered inset;
+    }60%{
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset;
+    }
+}
+/*TODO
+Цвета неба задаются следующими свойствами:
+    День:
+        background: skyblue;
+        box-shadow: 0 -400px 300px -300px steelblue inset;
+    Вечер:
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px orangered inset;
+    Ночь:
+        background: darkslateblue;
+        box-shadow: 0 -400px 300px -300px transparent inset;
+        
+Нужно реализовать плавный переход между ними и зациклить его.
+*/
+
+.ship::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    width: 100px;
+    height: 20px;
+    
+    content: '';
+    
+    border-radius: 0 0 0 20px;
+    background: #e25c45;
+}
+
+.ship::before {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    
+    width: 65px;
+    height: 16px;
+    
+    content: '';
+    
+    border-radius: 20px 0 0 0;
+    background: #fff;
+}
+
+.ship {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    
+    width: 100px;
+    height: 36px;
+
+    animation: ship-move 45s linear infinite;
+}
+
+@keyframes ship-move{
+    0%{
+        transform: translateX(100px);
+        opacity: 1;
+    }
+    98%{
+        transform: translateX(-600px);
+        opacity: 1;
+    }99%{
+        transform: translateX(-600px);
+        opacity: 0;
+    }100%{
+        transform: translateX(100px);
+        opacity: 0;
+    }
+}
+
+.ship_smokestack {
+    position: absolute;
+    bottom: 36px;
+    left: 45px;
+    
+    width: 10px;
+    height: 17px;
+    
+    background: #a18e6e;
+}
+
+.ship_window {
+    position: absolute;
+    top: 6px;
+    left: 40px;
+    
+    width: 7px;
+    height: 7px;
+    
+    border-radius: 50%;
+    background: #a18e6e;
+    box-shadow: 13px 0 0 0 #a18e6e, -13px 0 0 0 #a18e6e;
+}
+
+.smoke div {
+    position: absolute;
+    
+    width: 7px;
+    height: 7px;
+    
+    border-radius: 50%;
+    background: #fff;
+}
+
+.smoke-1 {
+    top: -25px;
+    right: 44px;
+
+    animation: smoke-move 2s ease-out infinite;
+}
+@keyframes smoke-move{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-200%) scale(2) ;
+        opacity: 0;
+    }
+}
+
+.smoke-2 {
+    top: -25px;
+    right: 42px;
+    animation: smoke-move 2s 733ms ease-out infinite;
+}
+
+.smoke-3 {
+    top: -25px;
+    right: 49px;
+    animation: smoke-move 2s 1466ms ease-out infinite;
+
+}
+
+.sun {
+    position: absolute;
+    top: 30px;
+    right: 50%;
+    
+    width: 80px;
+    height: 80px;
+    
+    border-radius: 50%;
+    background: #ffcf11;
+    box-shadow: 0 0 100px #ffdf05;
+    animation: sun-spin 30s linear infinite;
+
+}
+
+.sun-wrapper {
+    position: absolute;
+    
+    width: 100%;
+    height: 100%;
+    
+    transform-origin: bottom center;
+
+    animation: sun-wrapper-spin 90s linear infinite;
+}
+@keyframes sun-wrapper-spin{
+    0%{
+        transform: rotate(-1turn);
+    }
+}
+
+.sun div {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    
+    width: 2px;
+    height: 100px;
+    margin-left: -1px;
+    
+    border: solid #ffcf11;
+    border-width: 10px 0 10px 0;
+
+}
+@keyframes sun-spin{
+    100%{
+        transform: rotate(2turn);
+    }
+}
+
+.sun div:nth-child(2) {
+    transform: rotate(18deg);
+}
+
+.sun div:nth-child(3) {
+    transform: rotate(36deg);
+}
+
+.sun div:nth-child(4) {
+    transform: rotate(54deg);
+}
+
+.sun div:nth-child(5) {
+    transform: rotate(72deg);
+}
+
+.sun div:nth-child(6) {
+    transform: rotate(90deg);
+}
+
+.sun div:nth-child(7) {
+    transform: rotate(-18deg);
+}
+
+.sun div:nth-child(8) {
+    transform: rotate(-36deg);
+}
+
+.sun div:nth-child(9) {
+    transform: rotate(-54deg);
+}
+
+.sun div:nth-child(10) {
+    transform: rotate(-72deg);
+}
+
+.cloud {
+    position: absolute;
+    left: -180px;
+    
+    width: 200px;
+    height: 60px;
+    
+    opacity: .8;
+    border-radius: 200px;
+    background: #fff;
+}
+
+.cloud:before,
+.cloud:after {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    
+    width: 100px;
+    height: 80px;
+    
+    content: '';
+    
+    border-radius: 100px;
+    background: #fff;
+}
+
+.cloud:after {
+    top: -55px;
+    right: 15px;
+    left: auto;
+    
+    width: 120px;
+    height: 120px;
+}
+
+.cloud-1 {
+    top: 10px;
+
+
+    animation: cloud-1-move 50s linear infinite;
+
+}
+@keyframes cloud-1-move{
+    0%, 100%{
+        opacity: .8;
+        transform:translateX(325px) scale(.3); 
+    }
+    50%{
+        opacity: .8;
+        transform: translateX(650px) scale(.3);
+    }51%{
+        opacity: 0;
+        transform: translateX(650px) scale(.3);
+    }52%{
+        opacity: 0;
+        transform: translateX(0px) scale(.3);
+    }
+    53%{
+        opacity: .8;
+        transform: translateX(0px) scale(.3);
+    }
+    
+}
+
+.cloud-2 {
+    top: 50px;
+
+    transform: scale(-.45,.45);
+    animation: cloud-2-move 40s linear infinite;
+}
+
+@keyframes cloud-2-move{
+    0%{
+        opacity: .8;
+        transform: translateX(0px) scale(-.45,.45);
+    }
+    98%{
+        transform: translateX(650px) scale(-.45,.45);
+        opacity: .8;
+    }
+    99%{
+        transform: translateX(650px) scale(-.45,.45);
+        opacity: 0;
+    }
+    100%{
+        transform: translateX(0px) scale(-.45,.45);
+        opacity: 0;
+    }
+}
+
+.cloud-3 {
+    top: 100px;
+
+    animation: cloud-3-move 30s linear infinite;
+}
+@keyframes cloud-3-move{
+    0%, 100%{
+        transform: translateX(580px) scale(.57);
+        opacity: .8;
+    }
+    10%{
+        transform: translateX(650px) scale(.57);
+        opacity: .8;
+    }11%{
+        transform: translateX(650px) scale(.57);
+        opacity: 0;
+    }12%{
+        transform: translateX(0px) scale(.57) ;
+        opacity: 0;
+    }13%{
+        transform: translateX(0px) scale(.57);
+        opacity: .8;
+    }
+
+}
+
+.cloud-4 {
+    top: 170px;
+
+    animation: cloud-4-move 20s linear infinite;
+}
+@keyframes cloud-4-move{
+    0%{
+        opacity: .8;
+        transform: translateX(0px) scale(-.67, .67);
+    }98%{
+        opacity: .8;
+        transform:  translateX(650px) scale(-.67, .67);
+    }99%{
+        opacity: 0;
+        transform:  translateX(650px) scale(-.67, .67);
+    }100%{
+        opacity: 0;
+        transform:  translateX(0px) scale(-.67, .67);
+    }
+}
+
+
+.sea {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    height: 40px;
+    
+    opacity: .8;
+    background: #2a94d6;
+}
+
+.sea::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    
+    height: 10px;
+    
+    content: '';
+    
+    background: #1d7fbb;
+}

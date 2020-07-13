@@ -1,0 +1,31 @@
+ .animation{
+     width: 150px;
+     height: 150px;
+     background-color: #f00;
+
+     animation: move 3s ;
+     animation-fill-mode: forwards;
+     animation-timing-function: linear;
+     animation-iteration-count: infinite;
+     animation-direction: alternate;
+
+
+     transition-property: background-color;
+     transition-duration: 500ms;
+
+ }
+ .animation:hover{
+     background-color: #ff0;
+ }
+
+ @keyframes move{
+     0%{
+        transform: translate(0,0);
+     }25%{
+        transform: translate(100px, 0);
+     }50%{
+        transform: translate(100px, 100%);
+     }75%, 100%{
+        transform: translate(100px, 100%) scale(2) rotate(145deg);
+     }
+ }
