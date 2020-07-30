@@ -1,0 +1,215 @@
+/* Fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@600&display=swap');
+body{
+    font-family: 'Recursive', sans-serif;
+}
+/* Header */
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    padding: 1rem;
+    border-bottom: 3px solid rgb(48, 117, 8);
+
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 7rem;
+    text-align: center;
+}
+
+/* Gallary */
+
+.gallary__wrapper{
+    position: relative;
+    display: block;
+    margin: 3rem auto;
+    padding: 1rem 1rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
+
+
+    width: 80%;
+}
+
+.gallary{
+    white-space: nowrap;
+
+    margin: 0;
+    padding: 0;
+
+    
+    width: 100%;
+}
+.picture__wrapper{
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin: 0;
+    padding: 0.5rem;
+    width: calc(((100% - 4rem) / 4));
+    background-color: #fff;
+    transition-duration: 0ms;
+}
+
+
+
+.picture__wrapper img{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.picture__description{
+    position: absolute;
+    display: block;
+    white-space: normal;
+
+    overflow: hidden;
+    height: 0;
+    margin: 0 0 0 -0.5rem;
+    padding: 0;
+
+}
+.picture__wrapper:hover  > .picture__description{
+    height: auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 0.3rem 0.2rem rgb(92, 87, 112);
+    z-index: 1000;
+}
+.picture__wrapper:hover{
+    box-shadow: 0 -0.2rem 0.3rem 0.2rem rgb(92, 87, 112);
+    z-index: 1001;
+}
+
+
+/* Controller */
+
+.gallary__wrapper input{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1rem;
+    width: 1rem;
+    margin: 0 0 1rem 0;
+}
+
+.gallary__wrapper input:nth-child(1){
+    left: calc(50% - 3.5rem);
+}
+.gallary__wrapper input:nth-child(2){
+    left: calc(50% - 1.5rem);
+}
+.gallary__wrapper input:nth-child(3){
+    left: calc(50% + 0.5rem);
+}
+.gallary__wrapper input:nth-child(4){
+    left: calc(50% + 2.5rem);
+}
+
+/* Moving slider */
+
+.gallary__wrapper input:nth-child(2):checked~  .gallary{
+    margin-left: -75%;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;   
+}
+
+.gallary__wrapper input:nth-child(1):checked~  .gallary{
+    margin-left: 0;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;   
+}
+.gallary__wrapper input:nth-child(3):checked~  .gallary{
+    margin-left: -150%;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;   
+}
+.gallary__wrapper input:nth-child(4):checked~  .gallary{
+    margin-left: -225%;
+    transition-timing-function: ease-in-out;
+    transition-duration: 300ms;   
+}
+/* Modal window */
+
+.modal{
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.719);
+    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+.modal__overlap{
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+input[name="pict"]:checked ~ .modal{
+    display: block;
+    z-index: 2000;
+}
+input[name="pict"]:checked ~ .modal__overlap{
+    display: block;
+    z-index: 2002;
+}
+
+input[name="pict"]:checked ~ .exit__modal__symbol{
+    display: inline-block;
+}
+
+input[name="pict"]{
+    display: none;
+}
+
+.gallary > input[name="pict"]:checked + .picture__wrapper > label > img{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+
+    width: auto;
+    max-width: 90%;
+    max-height: 90%;
+
+
+    z-index: 2002;
+}
+.exit__modal__symbol::before{
+    content: "\2716";
+}
+.exit__modal__symbol{
+    position: fixed;
+    display: none;
+    z-index: 2003;
+    top: 2rem;
+    right: 2rem;
+
+    color: #fff;
+    transform: scale(2);
+}
+.exit__modal__symbol:hover{
+    transform: scale(2.3);
+    transition-timing-function: ease-out;
+    transition-duration: 100ms;
+
+    cursor: pointer;
+}
+
+input#exit__button:checked ~ .modal__overlap,
+input#exit__button:checked ~ .modal,
+input#exit__button:checked ~ .exit__modal__symbol
+{
+    display: none;
+}
