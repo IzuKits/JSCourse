@@ -27,35 +27,37 @@ header{
     position: relative;
     display: block;
     margin: 3rem auto;
-    padding: 1rem 0;
-    overflow: hidden;
+    padding: 1rem 1rem;
+    overflow-x: hidden;
+    overflow-y: visible;
+    white-space: nowrap;
 
-    background-color: chartreuse;
+
     width: 80%;
 }
 
 .gallary{
-    background-color: chocolate;
     white-space: nowrap;
 
     margin: 0;
     padding: 0;
 
-    text-align: center;
+    
     width: 100%;
 }
 .picture__wrapper{
+    display: inline-block;
     position: relative;
     vertical-align: top;
-    display: inline-block;
     margin: 0;
     padding: 0.5rem;
-    width: calc(((100% - 1rem) / 4) - 1rem);
+    width: calc(((100% - 4rem) / 4));
     background-color: #fff;
+    transition-duration: 0ms;
 }
-.picture__wrapper:first-child{
-    margin-left: 0.5rem;
-}
+
+
+
 .picture__wrapper img{
     width: 100%;
     position: relative;
@@ -70,6 +72,7 @@ header{
     height: 0;
     margin: 0 0 0 -0.5rem;
     padding: 0;
+
 }
 .picture__wrapper:hover  > .picture__description{
     height: auto;
@@ -77,12 +80,13 @@ header{
     background-color: #fff;
     box-shadow: 0 0.5rem 0.3rem 0.2rem rgb(92, 87, 112);
     z-index: 1000;
-
 }
 .picture__wrapper:hover{
     box-shadow: 0 -0.2rem 0.3rem 0.2rem rgb(92, 87, 112);
     z-index: 1001;
 }
+
+
 /* Controller */
 
 .gallary__wrapper input{
@@ -110,38 +114,102 @@ header{
 /* Moving slider */
 
 .gallary__wrapper input:nth-child(2):checked~  .gallary{
-    transform: translateX(calc(0px - (100% - 1rem) * 0.75));
+    margin-left: -75%;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;   
 }
 
 .gallary__wrapper input:nth-child(1):checked~  .gallary{
-    transform: translateX(0);
+    margin-left: 0;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;   
 }
 .gallary__wrapper input:nth-child(3):checked~  .gallary{
-    transform: translateX(calc(0px - (100% - 1rem) * 1.5));
+    margin-left: -150%;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;   
 }
 .gallary__wrapper input:nth-child(4):checked~  .gallary{
-    transform: translateX(calc(0px - (100% - 1rem) * 2.25));
+    margin-left: -225%;
     transition-timing-function: ease-in-out;
     transition-duration: 300ms;   
 }
 /* Modal window */
 
-.picture__wrapper:active{
-
-}
-
 .modal{
+    display: none;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.63);
+    background-color: rgba(0, 0, 0, 0.719);
     z-index: 2000;
     width: 100vw;
     height: 100vh;
     left: 0;
     top: 0;
+}
+.modal__overlap{
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+input[name="pict"]:checked ~ .modal{
+    display: block;
+    z-index: 2000;
+}
+input[name="pict"]:checked ~ .modal__overlap{
+    display: block;
+    z-index: 2002;
+}
+
+input[name="pict"]:checked ~ .exit__modal__symbol{
+    display: inline-block;
+}
+
+input[name="pict"]{
+    display: none;
+}
+
+.gallary > input[name="pict"]:checked + .picture__wrapper > label > img{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+
+    width: auto;
+    max-width: 90%;
+    max-height: 90%;
+
+
+    z-index: 2002;
+}
+.exit__modal__symbol::before{
+    content: "\2716";
+}
+.exit__modal__symbol{
+    position: fixed;
+    display: none;
+    z-index: 2003;
+    top: 2rem;
+    right: 2rem;
+
+    color: #fff;
+    transform: scale(2);
+}
+.exit__modal__symbol:hover{
+    transform: scale(2.3);
+    transition-timing-function: ease-out;
+    transition-duration: 100ms;
+
+    cursor: pointer;
+}
+
+input#exit__button:checked ~ .modal__overlap,
+input#exit__button:checked ~ .modal,
+input#exit__button:checked ~ .exit__modal__symbol
+{
+    display: none;
 }
